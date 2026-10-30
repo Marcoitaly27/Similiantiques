@@ -3,38 +3,51 @@
 This app is a static site. The Python files only build/evaluate the museum
 index offline; they are not a web server or Vercel Functions.
 
-## Repository configuration
+## Build Output API
 
-Root `vercel.json` explicitly selects no framework (`framework: null`), disables
-installation and build commands, and publishes `public/` as the output directory.
-`.vercelignore` excludes offline Python tooling/tests and development files from
-the Vercel upload. No Python entrypoint or serverless function is needed.
-These files do not affect the GitHub Pages workflow or local index generation.
+Root `vercel.json` selects no framework (`framework: null`), skips dependency
+installation, and runs `node tools/build-vercel.mjs`. This dependency-free
+packaging step copies `public/` into `.vercel/output/static/` and writes
+`.vercel/output/config.json` with `{ "version": 3 }`. The configured Output
+Directory is `.vercel/output`, the Vercel Build Output API artifact.
+There is no frontend bundling, compilation, Python runtime or serverless function.
+
+`.vercelignore` excludes offline Python tooling/tests and development files
+from the Vercel upload, while retaining `tools/build-vercel.mjs`.
+Only generated `.vercel/output/` is replaced; linked-project settings under
+`.vercel/project.json` are preserved. Run `npm run build:vercel` locally to
+inspect the artifact. These files do not affect GitHub Pages or index generation.
 
 ## Project settings and redeploy
 
 1. Import `Marcoitaly27/Similiantiques` with **Root Directory = repository root**,
-   not `public/`, so Vercel reads the root configuration.
-2. Use **Framework Preset = Other**. The checked-in configuration supplies empty
-   build/install commands and **Output Directory = public**; remove conflicting
-   project overrides or custom configuration paths if previously configured.
+   not `scripts/` or `public/`, so Vercel reads the root configuration.
+2. Use **Framework Preset = Other**. Remove conflicting build/output overrides:
+   the checked-in config specifies the packaging command and `.vercel/output`.
+   In particular, do not retain the old empty build command / `public` output.
 3. Deploy the latest `main` commit. A connected Git project should deploy new
-   pushes automatically; otherwise use Redeploy for the latest commit in Vercel.
-4. Confirm build logs no longer detect a Python application and the deployment
-   serves `index.html`, `src/app.js`, and `src/model-worker.js` as static files.
-5. Check the live UI and run a real photo search once the museum index exists.
+   pushes automatically; otherwise redeploy the latest commit in Vercel.
+4. Logs should show `Static site packaged at .../.vercel/output/static/`.
+   Check output includes `static/index.html` and `static/src/model-worker.js`,
+   and no warning about missing `functions`, `static`, or `services` directories.
+5. Open the unique deployment URL first, then the production domain. If only
+   the production domain fails, check its assignment and production promotion.
 
-The original deployment at commit `8eceeda` failed with
-`PYTHON_ENTRYPOINT_NOT_FOUND`: Vercel inferred a Python app from the repository's
-Python tooling. Adding a dummy `app.py` would introduce an unnecessary backend;
-explicit static configuration addresses that classification instead.
+## Observed failures
 
-## Validation and remaining data requirements
+* Commit `8eceeda`: `PYTHON_ENTRYPOINT_NOT_FOUND`. Vercel inferred a Python
+  application; explicit static framework settings and exclusions addressed that.
+* Commit `35d000d`: build succeeded in 34 ms, but warned that output contained
+  no `functions`, `static`, or `services`. This empty deployment explains the
+  root 404. The earlier empty build command / output-directory configuration
+  did not produce a deployable artifact in the reported environment.
+* The explicit Build Output API packaging replaces that configuration and has
+  regression tests for a complete artifact, repeated builds and project settings.
+  Vercel CLI 65.4.0 was run locally against isolated project settings: it
+  completed successfully and emitted all 23 public files, byte-identical, under
+  `static/`. All 13 JavaScript tests passed. Hosted success still requires
+  confirmation from the next Vercel deployment.
 
-Local checks can confirm the JSON configuration, output directory and static
-entry files. A successful hosted redeployment still needs confirmation from
-Vercel's logs; no Vercel project credentials are available in this workspace.
-A deployment of the UI alone is not a working museum search: supply real
-`public/data/objects.json` and `embeddings.bin`, example photos, and complete the
-consistency/evaluation checks described in the main README. Do not deploy
-private evaluation images under `public/`.
+The museum index remains a separate prerequisite: supply real
+`public/data/objects.json` and `embeddings.bin` and complete the consistency and
+relevance checks in the README. Do not deploy private test images in `public/`.

@@ -166,8 +166,9 @@ or certify relevance. No publication or hosted load-time measurement was made he
 
 ## Deploy on Vercel
 
-Use the root `vercel.json` to publish `public/` as a static site, with no Python
-backend or build step. See [Vercel setup and troubleshooting](docs/vercel.md).
+Vercel runs `tools/build-vercel.mjs` to package `public/` into the Build Output
+API directory `.vercel/output/static/`, with no dependencies or frontend bundling.
+See [Vercel setup and troubleshooting](docs/vercel.md) for settings and 404 diagnosis.
 
 ## Credits and rights
 

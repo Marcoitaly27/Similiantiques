@@ -2,7 +2,7 @@
 
 ## Verified and unresolved
 
-Local validation: 15 pytest CLI-contract cases and 11 Node ranking/parser cases
+Local validation: 15 pytest CLI-contract cases and 13 Node ranking/parser/packaging cases
 passed. The app shell and input-handling paths were previously exercised in Chromium.
 Real CLIP model weights/inference, cross-runtime equivalence, relevance, dataset
 coverage, hosted performance and low-memory phone behavior remain unverified.
@@ -85,5 +85,7 @@ Cache eviction, no internet and private browsing should be separate cases.
 CI installs only pytest and runs its CLI-contract suite and `node --test` on
 all pushes/pull requests. Pages also invokes that reusable test workflow before
 deployment. Passing CI does not run heavy model inference or the 15-query study.
+Vercel CLI 65.4.0 also produced a complete static artifact in an isolated local
+validation run. Hosted Vercel success remains unconfirmed.
 GitHub-hosted CI and Pages have not been executed from this workspace; the local
 commands are the available evidence. Setup and deployment steps are in the README.

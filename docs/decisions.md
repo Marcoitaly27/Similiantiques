@@ -77,6 +77,7 @@ in the manifest and its accompanying dataset-release notes.
 
 | Observed issue | Response | Current limit |
 | --- | --- | --- |
+| Vercel build completed with no deployable output at `35d000d` | Added explicit version-3 Build Output API packaging and artifact regression tests | Hosted redeploy must confirm the 404 is resolved |
 | Empty repository and no museum dataset | Built a static shell, strict schema reader, Python generator and visible missing-catalogue error | No actual retrieval-quality result exists |
 | No real example photos | Added six disabled original illustrations with explicit placeholder status | Add permitted photos before claiming interactive examples |
 | HEIC is not reliably decodable by this flow | Detect HEIC/HEIF and explain local JPEG export; verified the error in Chromium | Native HEIC conversion is not implemented |
