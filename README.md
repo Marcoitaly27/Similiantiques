@@ -164,6 +164,11 @@ CI also runs **pytest and node --test on every push**, plus pull requests.
 Python CI tests exercise the report verifier; they do not download CLIP weights
 or certify relevance. No publication or hosted load-time measurement was made here.
 
+## Deploy on Vercel
+
+Use the root `vercel.json` to publish `public/` as a static site, with no Python
+backend or build step. See [Vercel setup and troubleshooting](docs/vercel.md).
+
 ## Credits and rights
 
 Museum data/images: **The Metropolitan Museum of Art, Open Access (CC0)**.

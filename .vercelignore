@@ -1,0 +1,9 @@
+# Offline Python index/evaluation tooling is not part of this static deployment.
+scripts/
+tests/
+requirements-dev.txt
+.venv/
+.pytest_cache/
+**/__pycache__/
+docs/
+.github/
