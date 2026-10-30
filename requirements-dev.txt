@@ -1,0 +1,2 @@
+# Fast CLI-contract tests; no model downloads needed.
+pytest==8.4.2

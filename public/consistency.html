@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CLIP consistency check</title><link rel="stylesheet" href="./styles.css"><script type="module" src="./src/consistency.js"></script></head>
+<body><main><h1>Python ↔ browser CLIP consistency</h1><p>Generate five local references with <code>scripts/consistency.py prepare</code>. This check uses the app’s actual worker and image preprocessing. Images stay local. Model files download on first use.</p><p>All five cosine similarities must be strictly greater than 0.98. A failure means the catalogue must not be considered compatible.</p><button class="button primary" id="run">Run five-image check</button><progress id="check-progress" max="5" value="0" aria-label="Images checked"></progress><pre id="report" role="status" aria-live="polite"></pre><a id="save" download="browser-consistency.json" hidden>Save report</a><p><a href="./">Back to Simili</a></p></main></body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" role="img" aria-labelledby="title desc">
+  <title id="title">Simili demo GIF placeholder</title>
+  <desc id="desc">No recording yet. Planned flow: choose a photo, find resemblances, compare side by side.</desc>
+  <rect width="900" height="220" rx="12" fill="#f8f6f0"/>
+  <rect x="20" y="20" width="860" height="180" rx="8" fill="none" stroke="#bfc4b3" stroke-dasharray="6 5"/>
+  <g fill="#292b26" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="450" y="75" font-size="24">Demo GIF placeholder</text>
+    <text x="450" y="118" font-size="20" fill="#566542">Photo → Search → Compare</text>
+    <text x="450" y="158" font-size="14" fill="#686a60">Replace this illustration with a recording in docs/demo.gif</text>
+  </g>
+</svg>

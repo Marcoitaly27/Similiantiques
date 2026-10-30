@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Explore visual connections with The Met collection. Private, in-browser visual similarity search.">
+  <title>Simili — Visual connections</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Vai al contenuto</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Simili home">simili<span class="brand-dot">.</span></a>
+    <span class="header-note" data-i18n="headerNote">OGGETTI, ATTRAVERSO IL TEMPO</span>
+    <button id="language" class="language" type="button" aria-label="Switch to English">EN <span aria-hidden="true">→</span></button>
+  </header>
+  <main id="main">
+    <section class="intro" aria-labelledby="heading">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="little-star" aria-hidden="true">✳</span> <span data-i18n="eyebrow">UN NUOVO SGUARDO SUL PASSATO</span></p>
+        <h1 id="heading" data-i18n="headline">Ogni oggetto ha<br>una somiglianza.</h1>
+        <p class="lead" data-i18n="lead">Una forma, un dettaglio, un’eco lontana. Scopri le connessioni visive tra i tuoi oggetti e la collezione del Met.</p>
+        <p class="privacy"><span aria-hidden="true">⌑</span> <span data-i18n="privacy">La tua foto resta nel browser. Sempre.</span></p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-label">A STUDY IN RESEMBLANCE <span>01 — ∞</span></div>
+        <svg class="vase" viewBox="0 0 320 330" fill="none">
+          <defs><linearGradient id="clay" x1="80" y1="80" x2="250" y2="270" gradientUnits="userSpaceOnUse"><stop stop-color="#c48554"/><stop offset=".44" stop-color="#9e5f38"/><stop offset="1" stop-color="#613b2b"/></linearGradient><pattern id="lines" width="9" height="6" patternUnits="userSpaceOnUse"><path d="M0 3h9" stroke="#f8dbab" stroke-opacity=".14"/></pattern></defs>
+          <ellipse cx="163" cy="300" rx="86" ry="10" fill="#302b22" opacity=".12"/>
+          <path d="M115 94C59 73 40 125 70 164c8 11 20 16 29 19M208 94c57-21 76 31 46 70-8 11-20 16-29 19" stroke="#8c5534" stroke-width="18"/>
+          <path d="M120 43h83l-12 61c2 23 52 52 52 98 0 39-35 56-48 72l-3 19h-62l-4-19c-16-16-48-33-48-72 0-46 51-75 54-98z" fill="url(#clay)"/>
+          <path d="M120 43h83l-12 61c2 23 52 52 52 98 0 39-35 56-48 72l-3 19h-62l-4-19c-16-16-48-33-48-72 0-46 51-75 54-98z" fill="url(#lines)"/>
+          <ellipse cx="161" cy="43" rx="44" ry="9" fill="#b77747"/><ellipse cx="161" cy="43" rx="34" ry="4" fill="#533c2c"/>
+          <path d="M103 155c36 12 80 12 116 0M81 197c53 16 105 16 161 0M92 237c45 12 93 12 138 0" stroke="#382b22" stroke-width="9" opacity=".75"/>
+          <path d="M112 178l10-9 10 10 10-9 10 10 10-9 10 10 10-9 10 10 10-9 10 9" stroke="#30271f" stroke-width="3" opacity=".7"/>
+          <path d="M139 66l-3 38c-1 22-34 48-36 78" stroke="#f9c58f" stroke-width="5" opacity=".18" stroke-linecap="round"/>
+        </svg>
+        <span class="art-cross top">+</span><span class="art-cross bottom">+</span>
+        <div class="art-caption"><span>FORM / MATERIAL / MEMORY</span><span data-i18n="illustration">Illustrazione, non un’opera del museo</span></div>
+      </div>
+    </section>
+    <section class="workspace" aria-labelledby="search-heading">
+      <div class="section-top"><h2 id="search-heading"><span class="step">01</span> <span data-i18n="start">Parti da un oggetto</span></h2><span class="tiny" data-i18n="formats">JPG, PNG, WEBP, AVIF · MAX 40 MB</span></div>
+      <div class="search-layout">
+        <div id="drop-zone" class="drop-zone">
+          <div id="upload-prompt"><span class="upload-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m-5 5 5-5 5 5M4 16v4h16v-4"/></svg></span><h3 data-i18n="drop">Trascina qui una foto</h3><p data-i18n="uploadHint">Un oggetto trovato. Un ricordo. Qualcosa che ti incuriosisce.</p></div>
+          <img id="preview" class="preview" alt="" hidden>
+          <div class="upload-buttons"><button id="choose" class="button primary" type="button" data-i18n="choose">Scegli una foto →</button><button id="camera" class="button secondary" type="button" data-i18n="camera">Scatta una foto</button></div>
+          <input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/avif,.heic,.heif" hidden aria-label="Select a photo">
+          <input id="camera-file" type="file" accept="image/*" capture="environment" hidden aria-label="Take a photo">
+        </div>
+        <form id="search-form" class="refinement">
+          <p class="eyebrow" data-i18n="details">IL DETTAGLIO FA LA DIFFERENZA</p>
+          <label for="description" data-i18n="description">Aggiungi qualche parola <span>(facoltativo)</span></label>
+          <input id="description" type="text" maxlength="300" data-placeholder="descriptionPlaceholder" placeholder="Es. oro, barocco, motivi floreali" autocomplete="off">
+          <div class="weight-label"><label for="weight" data-i18n="weight">Quanto conta il testo?</label><output id="weight-value" for="weight">25%</output></div>
+          <input id="weight" type="range" min="0" max="75" value="25" step="5">
+          <p class="hint" data-i18n="textHint">La foto guida la ricerca. Le parole aiutano a precisarla; CLIP comprende meglio l’inglese.</p>
+          <button id="search" class="button search-button" type="submit" disabled data-i18n="search">Trova somiglianze <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+      <div id="download" class="download" hidden><label for="model-progress" data-i18n="download">Preparazione del modello · il primo download può richiedere alcuni minuti</label><progress id="model-progress" max="100"></progress><span id="download-detail"></span><p class="hint" data-i18n="cache">Modello salvato nella cache del browser, se disponibile. Occorrono circa 600 MB e memoria sufficiente; su alcuni telefoni può non funzionare.</p></div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+    <section class="examples" aria-labelledby="examples-heading">
+      <div class="section-top"><h2 id="examples-heading" data-i18n="examples">Oppure, segui una curiosità</h2><span class="tiny" data-i18n="exampleNote">6 FOTO DI ESEMPIO · IN ARRIVO</span></div>
+      <div id="example-grid" class="example-grid"></div>
+    </section>
+    <section id="results-section" class="results-section" aria-labelledby="results-heading">
+      <div class="section-top"><h2 id="results-heading"><span class="step">02</span> <span data-i18n="connections">Connessioni nella collezione</span></h2><span id="result-count" class="tiny"></span></div>
+      <div class="filters"><label><span data-i18n="department">Dipartimento</span><select id="department"></select></label><label><span data-i18n="period">Periodo</span><select id="period"></select></label><label><span data-i18n="culture">Cultura</span><select id="culture"></select></label></div>
+      <p class="hint" data-i18n="scoreHint">La percentuale esprime la somiglianza CLIP, non una probabilità o una conferma di identità. Il confronto è esclusivamente visivo.</p>
+      <div id="results" class="results"></div>
+      <p id="empty" class="empty" data-i18n="empty">Le connessioni iniziano con una foto. Scegli un oggetto e lasciati sorprendere.</p>
+    </section>
+    <aside class="honesty"><span class="little-star" aria-hidden="true">✳</span><p data-i18n="honesty">Somiglianze, non certezze. Simili è uno strumento di ricerca visiva: non è una perizia, non verifica l’autenticità e non attribuisce alcun valore monetario.</p></aside>
+  </main>
+  <footer><a class="brand" href="./">simili.</a><p><span data-i18n="attribution">Dati e immagini: The Metropolitan Museum of Art.</span> <a href="https://www.metmuseum.org/about-the-met/policies-and-documents/open-access" target="_blank" rel="noopener noreferrer">Open Access · CC0 →</a><br><span data-i18n="independent">Progetto indipendente, non affiliato a The Met. Le immagini del museo vengono caricate dai suoi server.</span></p><span class="tiny">LOOK CLOSER.</span></footer>
+  <dialog id="compare" aria-labelledby="compare-title"><div class="dialog-top"><h2 id="compare-title" data-i18n="compareTitle">Uno sguardo, fianco a fianco</h2><button id="close-compare" class="button secondary" data-i18n="close" type="button">Chiudi</button></div><p class="hint" data-i18n="compareHint">Confronta forma, colore e composizione. Questo modello non fornisce spiegazioni causali o prove di autenticità.</p><div class="compare-images"><figure><img id="compare-user" alt=""><figcaption data-i18n="yourPhoto">La tua foto</figcaption></figure><figure><img id="compare-match" alt="" referrerpolicy="no-referrer"><figcaption id="compare-name"></figcaption></figure></div></dialog>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Optional offline-catalogue/consistency tooling; not required to run the web app.
+transformers==4.57.1
+torch==2.9.0
+numpy==2.3.4
+Pillow==12.0.0
